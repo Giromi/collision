@@ -12,6 +12,7 @@ export class App {
 		this.resize();
 
 		this.ball = new Ball(this.stageWidth, this.stageHeight, 60, 15);
+		this.block = new Block(700, 30, 300, 450);
 
 		window.requestAnimationFrame(this.animate.bind(this));
 	}
@@ -27,6 +28,14 @@ export class App {
 
 	animate(t) {
 		window.requestAnimationFrame(this.animate.bind(this));
+
+		this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 		this.ball.draw(this.ctx, this.stageWidth, this.stageHeight);
+		this.block.draw(this.ctx);
 	}
+}
+
+
+window.onload = () => {
+	new App();
 }
