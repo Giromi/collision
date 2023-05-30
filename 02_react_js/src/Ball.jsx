@@ -1,30 +1,32 @@
 import { useRef, useEffect } from 'react';
 
-function Ball({canvasRef, stageWidth, stageHeight, radius, speed}) {
-	// const canvasRef = useRef(null);
+function Ball({stageWidth, stageHeight, radius, speed}) {
+	const canvasRef = useRef(null);
 	const contextRef = useRef(null);
+
 	const intervalId = useRef(null);
 
-	const handleCanvasResize = () => {
-    const canvas = canvasRef.current
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  };
+  //   const handleCanvasResize = () => {
+  //       const canvas = canvasRef.current
+  //
+  //       canvas.width = window.innerWidth;
+  //       canvas.height = window.innerHeight;
+  // };
 
 	useEffect(() => {
-		const canvas = canvasRef.current;
+		const cvs = canvasRef.current;
 		if (!canvasRef.current) return;
-		// Canvas FullScreen
-		canvas.width = window.innerWidth;
-		console.log(window.innerWidth, stageWidth)
-		canvas.height = window.innerHeight;
+		// cvs FullScreen
+		cvs.width = stageWidth;
+		cvs.height = stageHeight;
 
 		const ctx = canvasRef.current.getContext('2d');
 		if (!ctx) return;
+		// ctx.globalCompositeOperation='destination-over';
 
-		window.addEventListener('resize', handleCanvasResize);
-		handleCanvasResize();
+
+		// window.addEventListener('resize', handleCanvasResize);
+		// handleCanvasResize();
 
 		let r = radius;
 		const diameter = radius * 2;
@@ -75,7 +77,7 @@ function Ball({canvasRef, stageWidth, stageHeight, radius, speed}) {
 	return (
 		<canvas
 			ref={canvasRef}
-			id="canvas"
+			id="canvasBottom"
 		/>
 	);
 
